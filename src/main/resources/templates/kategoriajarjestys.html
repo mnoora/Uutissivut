@@ -53,7 +53,7 @@
             </div>
         
             <ul>
-                <h1>Kaikki uutiset järjestettynä kategorian mukaan</h1>
+                <h1>Kaikki kategorian </h1>
             <li th:each="uutinen : ${uutiset}">
                 <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
                     <h3> <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> </h3>

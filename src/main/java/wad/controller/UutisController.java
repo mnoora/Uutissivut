@@ -61,11 +61,11 @@ public class UutisController {
         return "kategoriajarjestys";
         
     }
-    @GetMapping("/{aihe}")
+    @GetMapping("/{kategoria}")
     public String aihe(Model model,@PathVariable String kategoria) {
         
         model.addAttribute("uutiset", this.kategoriaRepository.findByNimi(kategoria).getUutinen());
-        return "aihesivu";
+        return "kategoriajarjestys";
     }
     
     @GetMapping("/hallintapaneeli")
