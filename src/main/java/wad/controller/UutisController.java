@@ -55,7 +55,7 @@ public class UutisController {
     } 
     @GetMapping("/jarjestys/kategoria")
     public String jarjestysKategorianMukaan(Model model){
-        Pageable pageable = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"aiheet");
+        Pageable pageable = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"kategoriat");
         model.addAttribute("uutiset",this.uutisetRepository.findAll(pageable));
         model.addAttribute("kategoriat",this.kategoriaRepository.findAll());
         return "kategoriajarjestys";
