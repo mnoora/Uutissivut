@@ -45,9 +45,9 @@
             <a th:href="@{/}">
             <span th:text="Etusivu">Etusivu</span> 
             </a>
-            <li th:each="aihe : ${aiheet}">
-                <a th:href="@{/{aihe}(aihe=${aihe.nimi})}">
-                    <span th:text="${aihe.nimi}">Aihe</span> <br/>
+            <li th:each="kategoria : ${kategoriat}">
+                <a th:href="@{/{kategoria}(kategoria=${kategoria.nimi})}">
+                    <span th:text="${kategoria.nimi}">Kategoria</span> <br/>
                 </a>
              </li>
             </div>

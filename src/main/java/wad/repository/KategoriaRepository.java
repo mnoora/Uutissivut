@@ -6,14 +6,14 @@
 package wad.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import wad.domain.Aihe;
+import wad.domain.Kategoria;
 
 /**
  *
  * @author mnoora
  */
-public interface AiheRepository extends JpaRepository<Aihe, Long>{
+public interface KategoriaRepository extends JpaRepository<Kategoria, Long>{
 
-    Aihe findByNimi(String nimi);
+    Kategoria findByNimi(String nimi);
     Boolean existsByNimi(String nimi);
 }

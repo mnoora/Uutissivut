@@ -41,13 +41,13 @@ public class Uutinen extends AbstractPersistable<Long>{
     private List<Kirjoittaja> kirjoittajat;
     
     @ManyToMany(mappedBy="uutinen")
-    private List<Aihe> aiheet;
+    private List<Kategoria> kategoriat;
     
     
     
     public Uutinen(){
         this.time=LocalDateTime.now();
-        this.aiheet=new ArrayList<>();
+        this.kategoriat=new ArrayList<>();
         this.kirjoittajat=new ArrayList<>();
     }
     

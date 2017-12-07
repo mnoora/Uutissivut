@@ -52,9 +52,9 @@
             <a th:href="@{/}">
             <span th:text="Etusivu">Etusivu</span> 
             </a>
-            <li th:each="aihe : ${aiheet}">
-                <a th:href="@{/{aihe}(aihe=${aihe.nimi})}">
-                    <span th:text="${aihe.nimi}">Aihe</span> <br/>
+            <li th:each="kategoria : ${kategoriat}">
+                <a th:href="@{/{kategoria}(kategoria=${kategoria.nimi})}">
+                    <span th:text="${kategoria.nimi}">Kategoria</span> <br/>
                 </a>
              </li>
             </div>
@@ -84,8 +84,8 @@
                 <input name="ingressi"></input></p>
             <p>Teksti:<br/> 
                 <input name="teksti"></input></p>
-            <p>Aihe:<br/> 
-                <input name="aihe"></input></p>
+            <p>Kategoria:<br/> 
+                <input name="kategoria"></input></p>
             <p>Kirjoittaja:<br/> 
                 <input name="nimi"></input></p>
                 <p>Kuva: <br/>

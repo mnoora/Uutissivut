@@ -21,7 +21,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 @Data
 @Entity
-public class Aihe extends AbstractPersistable<Long>{
+public class Kategoria extends AbstractPersistable<Long>{
 
     private String nimi;
     @ManyToMany

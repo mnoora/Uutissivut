@@ -38,7 +38,7 @@ public class UutisController {
     private UutisRepository uutisetRepository;
     
     @Autowired 
-    private AiheRepository aiheRepository;
+    private KategoriaRepository kategoriaRepository;
     
     @Autowired
     private KirjoittajaRepository kirjoittajaRepository;
@@ -49,7 +49,7 @@ public class UutisController {
         Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "time");
         Pageable pageable2 = PageRequest.of(0, Integer.MAX_VALUE,Sort.Direction.DESC,"time");
         model.addAttribute("uutiset", this.uutisetRepository.findAll(pageable));
-        model.addAttribute("aiheet",this.aiheRepository.findAll());
+        model.addAttribute("kategoriat",this.kategoriaRepository.findAll());
         model.addAttribute("sivuuutiset",this.uutisetRepository.findAll(pageable2));
         return "uutiset";
     } 
@@ -57,43 +57,43 @@ public class UutisController {
     public String jarjestysKategorianMukaan(Model model){
         Pageable pageable = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"aiheet");
         model.addAttribute("uutiset",this.uutisetRepository.findAll(pageable));
-        model.addAttribute("aiheet",this.aiheRepository.findAll());
+        model.addAttribute("kategoriat",this.kategoriaRepository.findAll());
         return "kategoriajarjestys";
         
     }
     @GetMapping("/{aihe}")
-    public String aihe(Model model,@PathVariable String aihe) {
+    public String aihe(Model model,@PathVariable String kategoria) {
         
-        model.addAttribute("uutiset", this.aiheRepository.findByNimi(aihe).getUutinen());
+        model.addAttribute("uutiset", this.kategoriaRepository.findByNimi(kategoria).getUutinen());
         return "aihesivu";
     }
     
     @GetMapping("/hallintapaneeli")
     public String hallintapaneeli(Model model) {
         model.addAttribute("uutiset", this.uutisetRepository.findAll());
-        model.addAttribute("aiheet",this.aiheRepository.findAll());
+        model.addAttribute("kategoriat",this.kategoriaRepository.findAll());
         return "hallintapaneeli";
     }
 
     @PostMapping("/hallintapaneeli")
     @Transactional
-    public String create(@RequestParam String otsikko,@RequestParam String ingressi,@RequestParam String teksti,@RequestParam String aihe,@RequestParam String nimi,@RequestParam("file") MultipartFile file) throws IOException {
+    public String create(@RequestParam String otsikko,@RequestParam String ingressi,@RequestParam String teksti,@RequestParam String kategoria,@RequestParam String nimi,@RequestParam("file") MultipartFile file) throws IOException {
         Uutinen i = new Uutinen();
         i.setOtsikko(otsikko);
         i.setIngressi(ingressi);
         i.setTeksti(teksti);
-        Aihe a = new Aihe();
-        a.setNimi(aihe);
-        for(Aihe ai : this.aiheRepository.findAll()){
-            if(ai.getNimi().equals(aihe)){
-                a=ai;
+        Kategoria a = new Kategoria();
+        a.setNimi(kategoria);
+        for(Kategoria kat : this.kategoriaRepository.findAll()){
+            if(kat.getNimi().equals(kategoria)){
+                a=kat;
             }
         }
-        if(!this.aiheRepository.existsByNimi(aihe)){
-            this.aiheRepository.save(a);
+        if(!this.kategoriaRepository.existsByNimi(kategoria)){
+            this.kategoriaRepository.save(a);
             
         }
-        i.getAiheet().add(a);
+        i.getKategoriat().add(a);
         i.setContent(file.getBytes());
         Kirjoittaja kirjoittaja = new Kirjoittaja();
         kirjoittaja.setNimi(nimi);
@@ -117,7 +117,7 @@ public class UutisController {
             Optional<Uutinen> it =this.uutisetRepository.findById(id);
             
             model.addAttribute("uutinen", it.get());
-            model.addAttribute("aiheet",this.aiheRepository.findAll());
+            model.addAttribute("kategoriat",this.kategoriaRepository.findAll());
             return "uutinen";
         }
         return "redirect:/";
