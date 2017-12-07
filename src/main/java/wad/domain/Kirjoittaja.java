@@ -6,6 +6,7 @@
 package wad.domain;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -24,7 +25,7 @@ import javax.persistence.OneToMany;
 @Data
 @Entity
 public class Kirjoittaja extends AbstractPersistable<Long>{
-    
+    @Column
     private String nimi;
     
     @ManyToMany

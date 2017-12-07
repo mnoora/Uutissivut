@@ -22,6 +22,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.*;
+import javax.persistence.Column;
 
 
 @AllArgsConstructor
@@ -29,9 +30,13 @@ import java.util.*;
 @Entity
 public class Uutinen extends AbstractPersistable<Long>{
     
+    @Column
     private String otsikko;
+    @Column
     private String ingressi;
+    @Column
     private String teksti;
+    @Column
     private LocalDateTime time;
     @Lob
     @Basic(fetch=FetchType.LAZY)
@@ -40,7 +45,7 @@ public class Uutinen extends AbstractPersistable<Long>{
     @ManyToMany(mappedBy="uutiset")
     private List<Kirjoittaja> kirjoittajat;
     
-    @ManyToMany(mappedBy="uutinen")
+    @ManyToMany(mappedBy="uutiset")
     private List<Kategoria> kategoriat;
     
     

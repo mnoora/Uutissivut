@@ -7,6 +7,7 @@ package wad.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.transaction.Transactional;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,8 @@ public class UutisController {
     @GetMapping("/{kategoria}")
     public String aihe(Model model,@PathVariable String kategoria) {
         
-        model.addAttribute("uutiset", this.kategoriaRepository.findByNimi(kategoria).getUutinen());
-        return "kategoriajarjestys";
+        model.addAttribute("uutiset", this.kategoriaRepository.findByNimi(kategoria).getUutiset());
+        return "kaikkikategorianuutiset";
     }
     
     @GetMapping("/hallintapaneeli")
@@ -105,9 +106,13 @@ public class UutisController {
          if(!this.kirjoittajaRepository.existsByNimi(nimi)){
             this.kirjoittajaRepository.save(kirjoittaja);
         }
+        i.getKirjoittajat().add(kirjoittaja);
+        i.getKategoriat().add(a);
+        
         
        
         uutisetRepository.save(i);
+        
         return "redirect:/hallintapaneeli";
     }
     

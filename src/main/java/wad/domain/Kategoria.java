@@ -6,6 +6,7 @@
 package wad.domain;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
@@ -23,8 +24,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Kategoria extends AbstractPersistable<Long>{
 
+    @Column
     private String nimi;
     @ManyToMany
-    private List<Uutinen> uutinen;
+    private List<Uutinen> uutiset;
     
 }
