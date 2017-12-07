@@ -1,0 +1,4 @@
+wad/UutissivutApplication.class
+wad/domain/Uutinen.class
+wad/controller/UutisController.class
+wad/repository/UutisRepository.class

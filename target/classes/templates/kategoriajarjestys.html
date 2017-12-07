@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Uutiset</title>
+        <style>
+            body {
+                background-color: #93B874;
+            }
+            .header {
+                background-color: #f1f1f1;
+                padding: 20px;
+                text-align: center;
+            }
+
+/* Style the top navigation bar */
+            .topnav {
+                overflow: hidden;
+                background-color: #333;
+            }
+
+/* Style the topnav links */
+            .topnav a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+/* Change color on hover */
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+    </style>
+    </head>
+    <body>
+        
+        <div class="header">
+            <h1>Uutiset</h1>
+        </div>
+        <div class="topnav">
+            <a th:href="@{/}">
+            <span th:text="Etusivu">Etusivu</span> 
+            </a>
+            <li th:each="aihe : ${aiheet}">
+                <a th:href="@{/{aihe}(aihe=${aihe.nimi})}">
+                    <span th:text="${aihe.nimi}">Aihe</span> <br/>
+                </a>
+             </li>
+            </div>
+        
+            <ul>
+                <h1>Kaikki uutiset järjestettynä kategorian mukaan</h1>
+            <li th:each="uutinen : ${uutiset}">
+                <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
+                    <h3> <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> </h3>
+                </a>
+                <h4><span th:text="${uutinen.ingressi}">uutisen ingressi</span></h4> 
+                    
+                 
+            </li>
+        </ul>
+      
+
+      
+     
+        
+        
+      
+    </body>
+</html>
