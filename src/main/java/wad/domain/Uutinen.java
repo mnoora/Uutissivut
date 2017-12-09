@@ -23,6 +23,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.*;
 import javax.persistence.Column;
+import javax.validation.constraints.*;
 
 
 @AllArgsConstructor
@@ -31,6 +32,7 @@ import javax.persistence.Column;
 public class Uutinen extends AbstractPersistable<Long>{
     
     @Column
+    @NotEmpty
     private String otsikko;
     @Column
     private String ingressi;

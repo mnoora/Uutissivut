@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.validation.constraints.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -21,8 +22,10 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account extends AbstractPersistable<Long> {
-
+    
+    @NotEmpty
     private String username;
+    @NotEmpty
     private String password;
 
 

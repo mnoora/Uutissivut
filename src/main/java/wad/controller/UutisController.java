@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.transaction.Transactional;
 import java.util.Optional;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,9 +26,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import wad.domain.*;
+import wad.service.*;
 import wad.repository.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.*;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author mnoora
@@ -44,6 +48,17 @@ public class UutisController {
     @Autowired
     private KirjoittajaRepository kirjoittajaRepository;
     
+    @Autowired
+    private AccountRepository accountRepository;
+    
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+    
+    @PostConstruct
+    public void init() {
+        Account example = new Account("hannu","lol");
+        this.accountRepository.save(example);
+    }
     
     @GetMapping("/")
     public String list(Model model) {
@@ -142,6 +157,18 @@ public class UutisController {
             
     }
         return "redirect:/hallintapaneeli";
+    }
+    
+    @PostMapping("/login")
+    public String loginInformation(@RequestParam String username, @RequestParam String password){
+        if(this.customUserDetailsService.loadUserByUsername(username).getPassword().equals(password)){
+            return "hallintapaneeli";
+        }
+        return "login";
+    }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
     
    

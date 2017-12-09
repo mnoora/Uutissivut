@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -24,7 +25,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Kategoria extends AbstractPersistable<Long>{
 
-    @Column
+    @NotEmpty
     private String nimi;
     @ManyToMany
     private List<Uutinen> uutiset;

@@ -15,6 +15,7 @@ import lombok.Data;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import lombok.NoArgsConstructor;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -25,7 +26,7 @@ import javax.persistence.OneToMany;
 @Data
 @Entity
 public class Kirjoittaja extends AbstractPersistable<Long>{
-    @Column
+    @NotEmpty
     private String nimi;
     
     @ManyToMany
