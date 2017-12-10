@@ -52,26 +52,26 @@ public class UutinenTest {
     }
     
     @Test
-    public void konstruktoriAsettaaOtsikonOikein(){
+    public void setOtsikkoAsettaaOtsikonOikein(){
         assertEquals("esimerkkiOtsikko",uutinen.getOtsikko());
     }
     @Test
-    public void konstruktoriAsettaaIngressinOikein() {
+    public void setIngressiAsettaaIngressinOikein() {
         assertEquals("esimerkkiIngressi",uutinen.getIngressi());
     }
     
     @Test
-    public void konstruktoriAsettaaTekstinOikein() {
+    public void setTekstiAsettaaTekstinOikein() {
         assertEquals("esimerkkiTeksti", uutinen.getTeksti());
     }
     
     @Test
-    public void konstruktoriAsettaaKategoriatOikeinYhdelläKategorialla() {
+    public void setKategoriatToimiiOikeinYhdelläKategorialla() {
         assertEquals("kategoria",uutinen.getKategoriat().get(0).getNimi());
     }
     
     @Test
-    public void konstruktoriAsettaaKirjoittajatOikeinYhdelläKirjoittajalla() {
+    public void setKirjoittajatToimiiOikeinYhdelläKirjoittajalla() {
         assertEquals("kirjoittaja",uutinen.getKirjoittajat().get(0).getNimi());
     }
     @After

@@ -36,9 +36,7 @@ public class AccountTest {
     
     @Before
     public void setUp() {
-        account = new Account();
-        account.setUsername("username");
-        account.setPassword("password");
+        account = new Account("username","password");
     }
     
     @Test

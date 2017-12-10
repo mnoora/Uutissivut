@@ -45,12 +45,12 @@ public class KirjoittajaTest {
     }
     
     @Test
-    public void konstruktoriAsettaaNimenOikein() {
+    public void setNimiAsettaaNimenOikein() {
         assertEquals("nimi",kirjoittaja.getNimi());
     }
     
     @Test
-    public void konstruktoriAsettaaUutisetOikeinYhdelläUutisella(){
+    public void setUutisetToimiiOikeinYhdelläUutisella(){
         assertEquals("esimerkki",kirjoittaja.getUutiset().get(0).getOtsikko());
     }
     

@@ -49,12 +49,12 @@ public class KategoriaTest {
     }
 
     @Test
-    public void konstruktoriAsettaaNimenOikein() {
+    public void setNimiAsettaaNimenOikein() {
         assertEquals("nimi",kategoria.getNimi());
     }
     
     @Test
-    public void konstruktoriAsettaaUutisetOikeinYhdelläUutisella() {
+    public void setUutisetToimiiOikeinYhdelläUutisella() {
         
         assertEquals("esimerkki",kategoria.getUutiset().get(0).getOtsikko());
     }
