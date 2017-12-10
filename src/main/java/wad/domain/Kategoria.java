@@ -30,6 +30,7 @@ public class Kategoria extends AbstractPersistable<Long>{
     @Column
     private String nimi;
     
+    private int uutistenMaara;
     
     @ManyToMany
     private List<Uutinen> uutiset;
@@ -37,9 +38,15 @@ public class Kategoria extends AbstractPersistable<Long>{
     public Kategoria(String nimi, ArrayList lista){
         this.uutiset=lista;
         this.nimi=nimi;
+        this.uutistenMaara=this.uutiset.size();
     }
     
     public void lisaaUutinen(Uutinen uutinen) {
         this.uutiset.add(uutinen);
+        this.uutistenMaara++;
+    }
+    
+    public int getUutistenMaara(){
+        return this.uutistenMaara;
     }
 }

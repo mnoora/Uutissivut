@@ -74,11 +74,11 @@
              <a th:href="@{/hallintapaneeli}">
             <span th:text="Hallintapaneeli">Hallintapaneeli</span> 
             </a>
-            <li th:each="kategoria : ${kategoriat}">
+            <ul th:each="kategoria : ${kategoriat}">
                 <a th:href="@{/{kategoria}(kategoria=${kategoria.nimi})}">
                     <span th:text="${kategoria.nimi}">Kategoria</span> <br/>
                 </a>
-             </li>
+             </ul>
             </div>
         
         

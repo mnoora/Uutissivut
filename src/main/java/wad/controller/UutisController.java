@@ -72,6 +72,9 @@ public class UutisController {
     public String list(Model model) {
         Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "time");
         Pageable pageable2 = PageRequest.of(0, Integer.MAX_VALUE,Sort.Direction.DESC,"time");
+        Pageable pageable3 = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"uutistenMaara");
+        
+        model.addAttribute("maarauutiset",this.kategoriaRepository.findAll(pageable3));
         model.addAttribute("uutiset", this.uutisetRepository.findAll(pageable));
         model.addAttribute("kategoriat",this.kategoriaRepository.findAll());
         model.addAttribute("sivuuutiset",this.uutisetRepository.findAll(pageable2));
@@ -86,7 +89,7 @@ public class UutisController {
         
     }
     @GetMapping("/{kategoria}")
-    public String aihe(Model model,@PathVariable String kategoria) {
+    public String kategoria(Model model,@PathVariable String kategoria) {
         
         model.addAttribute("uutiset", this.kategoriaRepository.findByNimi(kategoria).getUutiset());
         return "kaikkikategorianuutiset";
@@ -177,6 +180,20 @@ public class UutisController {
             
     }
         return "redirect:/hallintapaneeli";
+    }
+    
+    @GetMapping("/jarjestys/edellinenviikko")
+    public String listaaEdellisenViikonUutiset(Model model){
+        ArrayList lista = new ArrayList<>();
+        LocalDateTime a = LocalDateTime.now().minusWeeks(1);
+        for(Uutinen uutinen : this.uutisetRepository.findAll()){
+            if(uutinen.getTime().isAfter(a)){
+                lista.add(uutinen);
+            }
+        }
+        Pageable pageable = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"time");
+        model.addAttribute("uutiset",lista);
+        return "edellisenviikonuutiset";
     }
     
     @PostMapping("/login")
