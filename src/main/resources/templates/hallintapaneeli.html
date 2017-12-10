@@ -52,16 +52,21 @@
             <a th:href="@{/}">
             <span th:text="Etusivu">Etusivu</span> 
             </a>
-            <ul th:each="kategoria : ${kategoriat}">
+            <a th:href="@{/hallintapaneeli}">
+            <span th:text="Hallintapaneeli">Hallintapaneeli</span> 
+            </a>
+            <u th:each="kategoria : ${kategoriat}">
                 <a th:href="@{/{kategoria}(kategoria=${kategoria.nimi})}">
                     <span th:text="${kategoria.nimi}">Kategoria</span> <br/>
                 </a>
-             </ul>
+             </u>
             </div>
        
         
      
-
+        <a th:href="@{/logout}">
+            <span text="logout">Logout </span>
+        </a>
         <ul>
             <li th:each="uutinen : ${uutiset}">
                 <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">

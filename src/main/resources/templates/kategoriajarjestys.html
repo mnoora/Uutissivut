@@ -34,6 +34,20 @@
                 background-color: #ddd;
                 color: black;
             }
+            .column {
+                float: left;
+                padding: 10px;
+            }   
+
+/* Left and right column */
+            .column.side {
+                width: 40%;
+            }
+
+/* Middle column */
+            .column.middle {
+                width: 60%;
+            }
     </style>
     </head>
     <body>
@@ -45,13 +59,17 @@
             <a th:href="@{/}">
             <span th:text="Etusivu">Etusivu</span> 
             </a>
-            <ul th:each="kategoria : ${kategoriat}">
+            <a th:href="@{/hallintapaneeli}">
+            <span th:text="Hallintapaneeli">Hallintapaneeli</span> 
+            </a>
+            <u th:each="kategoria : ${kategoriat}">
                 <a th:href="@{/{kategoria}(kategoria=${kategoria.nimi})}">
                     <span th:text="${kategoria.nimi}">Kategoria</span> <br/>
                 </a>
-             </ul>
+             </u>
             </div>
         
+        <div class="column middle">
             <ul>
                 <h1>Kaikki uutiset kategorian mukaan järjestettynä </h1>
             <li th:each="uutinen : ${uutiset}">
@@ -63,10 +81,38 @@
                  
             </li>
         </ul>
+        </div>
       
 
       
-     
+     <div class="column side">
+            <ul
+                <h1><strong>Kaikki uutiset aikajärjestyksessä</strong></h1>
+                <br/>
+                <br/>
+            <li th:each="uutinen : ${sivuuutiset}">
+                <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
+                    <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> <br/>
+                </a>
+                <span th:text="${uutinen.ingressi}">uutisen ingressi</span><br/> 
+            </li>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            <ul
+                <h1><strong> Kategoriat uutisten määrän perusteella järjestettynä</strong></h1>
+                <br/>
+                <br/>
+                <li th:each="kategoria : ${maarauutiset}">
+                   <a th:href="@{/{kategoria}(kategoria=${kategoria.nimi})}">
+                        <span th:text="${kategoria.nimi}">uutisen otsikko</span> <br/>
+                     </a>
+                 
+                </li>
+            </ul>
+        </div>
+      
         
         
       

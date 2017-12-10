@@ -41,13 +41,8 @@
                 background-color: #ddd;
                 color: black;
             }
-            nav > ul >li {
-                display:inline-block;
-                width:50%; /* this will put 2 in one row*/
-}
-            li li{
-                display: inline;
-            }
+            
+
             .column {
                 float: left;
                 padding: 10px;
@@ -55,12 +50,12 @@
 
 /* Left and right column */
             .column.side {
-                width: 25%;
+                width: 40%;
             }
 
 /* Middle column */
             .column.middle {
-                width: 75%;
+                width: 60%;
             }
         </style>
     </head>
@@ -74,15 +69,15 @@
              <a th:href="@{/hallintapaneeli}">
             <span th:text="Hallintapaneeli">Hallintapaneeli</span> 
             </a>
-             <ul th:each="kategoria : ${kategoriat}">
+            <u th:each="kategoria : ${kategoriat}">
                 <a th:href="@{/{kategoria}(kategoria=${kategoria.nimi})}">
                     <span th:text="${kategoria.nimi}">Kategoria</span> <br/>
                 </a>
-             </ul>
+             </u>
             </div>
         
         
-    
+        
         <div class="column middle">
             <ul>
                 <h1>5 viimeisintä uutista</h1>
@@ -98,8 +93,6 @@
             <a th:href="@{/jarjestys/kategoria}">
                 <span th:text="Kategoriajärjestys">Järjestä uutiset kategorian perusteella</span> 
             </a>
-            <br/>
-            <br/>
             <br/>
             <br/>
              <a th:href="@{/jarjestys/edellinenviikko}">
