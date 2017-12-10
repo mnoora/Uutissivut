@@ -14,20 +14,32 @@ import lombok.NoArgsConstructor;
 import lombok.Data;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.validation.constraints.*;
+import javax.persistence.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author mnoora
  */
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Data
 @Entity
 public class Kategoria extends AbstractPersistable<Long>{
 
-    @NotEmpty
+    @Column
     private String nimi;
+    
+    
     @ManyToMany
     private List<Uutinen> uutiset;
     
+    public Kategoria(String nimi, ArrayList lista){
+        this.uutiset=lista;
+        this.nimi=nimi;
+    }
+    
+    public void lisaaUutinen(Uutinen uutinen) {
+        this.uutiset.add(uutinen);
+    }
 }

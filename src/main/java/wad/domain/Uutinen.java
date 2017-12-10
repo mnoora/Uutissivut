@@ -11,6 +11,7 @@ package wad.domain;
  */
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -24,7 +25,7 @@ import javax.persistence.ManyToOne;
 import java.util.*;
 import javax.persistence.Column;
 import javax.validation.constraints.*;
-
+import javax.persistence.*;
 
 @AllArgsConstructor
 @Data
@@ -32,7 +33,6 @@ import javax.validation.constraints.*;
 public class Uutinen extends AbstractPersistable<Long>{
     
     @Column
-    @NotEmpty
     private String otsikko;
     @Column
     private String ingressi;
@@ -44,18 +44,20 @@ public class Uutinen extends AbstractPersistable<Long>{
     @Basic(fetch=FetchType.LAZY)
     private byte[] content;
     
-    @ManyToMany(mappedBy="uutiset")
+    
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy="uutiset")
     private List<Kirjoittaja> kirjoittajat;
     
-    @ManyToMany(mappedBy="uutiset")
+    
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy="uutiset")
     private List<Kategoria> kategoriat;
     
     
     
     public Uutinen(){
         this.time=LocalDateTime.now();
-        this.kategoriat=new ArrayList<>();
         this.kirjoittajat=new ArrayList<>();
+        this.kategoriat=new ArrayList<>();
     }
     
     

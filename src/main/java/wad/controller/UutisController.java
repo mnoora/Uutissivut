@@ -36,6 +36,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.*;
 import org.springframework.security.core.context.SecurityContextHolder;
+import java.util.ArrayList;
 
 /**
  *
@@ -105,21 +106,31 @@ public class UutisController {
         i.setOtsikko(otsikko);
         i.setIngressi(ingressi);
         i.setTeksti(teksti);
-        Kategoria a = new Kategoria();
-        a.setNimi(kategoria);
+        
+        ArrayList<Uutinen> uutiset = new ArrayList<>();
+        
+        Kategoria a = new Kategoria(kategoria,uutiset);
+        
+        
+        
         for(Kategoria kat : this.kategoriaRepository.findAll()){
             if(kat.getNimi().equals(kategoria)){
                 a=kat;
             }
         }
-        if(!this.kategoriaRepository.existsByNimi(kategoria)){
+       /* if(!this.kategoriaRepository.existsByNimi(kategoria)){
             this.kategoriaRepository.save(a);
             
-        }
+        }*/
+       this.kategoriaRepository.save(a);
+       
         i.getKategoriat().add(a);
         i.setContent(file.getBytes());
+        
+        a.lisaaUutinen(i);
         Kirjoittaja kirjoittaja = new Kirjoittaja();
         kirjoittaja.setNimi(nimi);
+        
         for(Kirjoittaja ki : this.kirjoittajaRepository.findAll()){
             if(ki.getNimi().equals(nimi)){
                 kirjoittaja=ki;
@@ -131,9 +142,11 @@ public class UutisController {
         i.getKirjoittajat().add(kirjoittaja);
         i.getKategoriat().add(a);
         
+       
+        this.uutisetRepository.save(i);
+        
         
        
-        uutisetRepository.save(i);
         
         return "redirect:/hallintapaneeli";
     }
@@ -168,10 +181,12 @@ public class UutisController {
     
     @PostMapping("/login")
     public String loginInformation(@RequestParam String username, @RequestParam String password){
+        
         if(this.customUserDetailsService.loadUserByUsername(username).getPassword().equals(password)){
             UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             auth.setAuthenticated(true);
+            
             return "redirect:/hallintapaneeli";
         }
         

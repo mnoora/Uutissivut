@@ -45,8 +45,20 @@ public class AccountTest {
     }
     
     @Test
+    public void setUsernameToimiiOikein(){
+        account.setUsername("newname");
+        assertEquals("newname",account.getUsername());
+    }
+    
+    @Test
     public void konstruktoriAsettaaSalasananOikein() {
         assertEquals("password",account.getPassword());
+    }
+    
+    @Test
+    public void setPasswordToimiiOikein() {
+        account.setPassword("newpassword");
+        assertEquals("newpassword", account.getPassword());
     }
     
     @After

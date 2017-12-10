@@ -16,6 +16,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import lombok.NoArgsConstructor;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
+import org.hibernate.annotations.*;
 
 /**
  *
@@ -26,9 +27,11 @@ import javax.validation.constraints.*;
 @Data
 @Entity
 public class Kirjoittaja extends AbstractPersistable<Long>{
-    @NotEmpty
+    
+    @Column
     private String nimi;
     
+    @Cascade({CascadeType.SAVE_UPDATE})
     @ManyToMany
     private List<Uutinen> uutiset;
 }

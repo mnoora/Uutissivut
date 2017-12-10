@@ -23,9 +23,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @NoArgsConstructor
 public class Account extends AbstractPersistable<Long> {
     
-    @NotEmpty
+    
     private String username;
-    @NotEmpty
+  
     private String password;
 
 
