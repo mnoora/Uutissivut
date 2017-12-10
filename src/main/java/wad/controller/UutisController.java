@@ -16,6 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,8 +30,12 @@ import wad.domain.*;
 import wad.service.*;
 import wad.repository.*;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.stereotype.*;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  *
@@ -45,6 +50,7 @@ public class UutisController {
     @Autowired 
     private KategoriaRepository kategoriaRepository;
     
+  
     @Autowired
     private KirjoittajaRepository kirjoittajaRepository;
     
@@ -58,6 +64,7 @@ public class UutisController {
     public void init() {
         Account example = new Account("hannu","lol");
         this.accountRepository.save(example);
+       
     }
     
     @GetMapping("/")
@@ -162,8 +169,12 @@ public class UutisController {
     @PostMapping("/login")
     public String loginInformation(@RequestParam String username, @RequestParam String password){
         if(this.customUserDetailsService.loadUserByUsername(username).getPassword().equals(password)){
-            return "hallintapaneeli";
+            UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            auth.setAuthenticated(true);
+            return "redirect:/hallintapaneeli";
         }
+        
         return "login";
     }
     @GetMapping("/login")

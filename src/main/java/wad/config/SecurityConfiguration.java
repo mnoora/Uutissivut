@@ -36,13 +36,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/hallintapaneeli").authenticated()
             .antMatchers("/**").permitAll()
             .anyRequest().authenticated().and()
-            .formLogin().loginPage("/login").permitAll().and()
+            .formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").permitAll().and()
             .logout().permitAll();
     }
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.inMemoryAuthentication()
+                .withUser("hannu").password("lol").roles("USER");
     }
 
     @Bean
