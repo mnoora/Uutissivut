@@ -1,8 +1,14 @@
-Sovellus on uutissivusto, jolta voi lukea uutisia. Etusivulla näkyy viisi viimeisintä uutista, sivummalla kaikki uutiset aikajärjestyksessä ja kategoriat listattuna niiden uutismäärien mukaan.
+Sovellus on uutissivusto, jossa voi selata ja lukea uutisia. Sivustolle voi myös kirjautua, jolloin uutisia voi lisätä ja poistaa.
+Uutisia pystyy myös järjestämään monella tavalla esim. julkaisuajan perusteella.
+
+Käyttöohje:
+
+Etusivulla näkyy viisi viimeisintä uutista, sivummalla kaikki uutiset aikajärjestyksessä ja kategoriat listattuna niiden uutismäärien mukaan.
 Etusivulla on myöskin linkit, joilla uutiset voi järjestää kategorian mukaan sekä katsoa vain edellisen viikon uutisia.
 Jokaista uutista pääsee tarkemmin tarkastelemaan klikkaamalla uutista.
 Navigintipaneelissa näkyvät myös kaikki kategoriat, joita klikkaamalla pääsee sivulle, jolla on listattuna kaikki kyseisen kategorian uutiset.
-Navigointipaneelissa olevaa Hallintapaneeli-painiketta painamalla pääsee kirjautumissivulle, jolle voi kirjautua oletuskäyttäjällä: Käyttätunnus = esimerkki ja Salasana = salasana.
+Navigointipaneelissa olevaa Hallintapaneeli-painiketta painamalla pääsee kirjautumissivulle, jolle voi kirjautua oletuskäyttäjällä: 
+Käyttätunnus = esimerkki ja Salasana = salasana
 Hallintapaneelissa uutisia voi lisätä sekä poistaa, käyttäjä voi myös kirjautua ulos logout-painikkeesta. 
 
 
