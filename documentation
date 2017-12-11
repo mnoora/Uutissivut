@@ -11,3 +11,11 @@ Käyttötapaukset
 Hän kirjautuu ja pääsee Hallintapaneeliin. Siellä hän kirjoittaa uuden uutisen ja painaa Lisää-painiketta.
 Sitten käyttäjä kirjautuu ulos logout-painikkeesta. 
 3. Käyttäjä painaa navigointipalkissa olevaa kategoriaa ja pääsee kyseisen kategorian sivulle, missä on kaikki kategorian uutiset.
+
+
+Sovelluksen puutteet ja parannusehdotukset
+
+Sovelluksesta puutuu käyttäjän syötteen validiointi ja virheviestit eivät myöskään ole ymmärrettäviä. Sovellus on myös isoilla tietomäärillä 
+epäkäytännöllinen, koska hakutoiminnallisuutta tai sivutusta ei ole. Parannusehdotuksiin kuuluvat nämä ehdottomasti.
+Edellämainitut puutteet tekevät sovelluksen oikeasti käytöstä vaikeaa.
+Sovelluksen automaattiset testit ovat myös hyvin puutteelliset. 
