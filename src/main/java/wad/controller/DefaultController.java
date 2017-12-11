@@ -25,7 +25,7 @@ import wad.service.CustomUserDetailsService;
  * @author mnoora
  */
 @Controller
-public class defaultController {
+public class DefaultController {
     
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
