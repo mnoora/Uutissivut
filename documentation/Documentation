@@ -6,11 +6,14 @@ Hallintapaneelissa uutisia voi lisätä sekä poistaa, käyttäjä voi myös kir
 
 Käyttötapaukset
 
-1. Käyttäjä tarkastelee uutisia etusivulla, klikkaa yhtä uutista ja pääsee tarkastelemaan sitä lähemmin.
-2. Käyttäjä, jolla on käyttäjätunnus sivulle, painaa Hallintapaneeli-painiketta navigointipaneelissa ja pääsee kirjautumissivulle. 
-Hän kirjautuu ja pääsee Hallintapaneeliin. Siellä hän kirjoittaa uuden uutisen ja painaa Lisää-painiketta.
+1.Käyttäjä lukee uutisen: Käyttäjä tarkastelee uutisia etusivulla, klikkaa yhtä uutista ja pääsee tarkastelemaan sitä lähemmin.
+2. Käyttäjä lisää uuden uutisen: Käyttäjä, jolla on käyttäjätunnus sivulle, painaa Hallintapaneeli-painiketta navigointipaneelissa ja pääsee kirjautumissivulle. 
+Hän kirjautuu ja pääsee Hallintapaneeliin. Siellä hän kirjoittaa uuden uutisen ja painaa Add-painiketta.
 Sitten käyttäjä kirjautuu ulos logout-painikkeesta. 
-3. Käyttäjä painaa navigointipalkissa olevaa kategoriaa ja pääsee kyseisen kategorian sivulle, missä on kaikki kategorian uutiset.
+3. Käyttäjä poistaa uutisen: Käyttäjä, jolla on käyttäjätunnus sivulle, painaa Hallintapaneeli-painiketta navigointipaneelissa ja pääsee kirjautumissivulle. 
+Hän kirjautuu ja pääsee Hallintapaneeliin. Siellä hän painaa delete-nappi uutisen kohdalla ja poistaa uutisen.
+Sitten käyttäjä kirjautuu ulos logout-painikkeesta
+4. Käyttäjä tarkastelee kaikkia yhden kategorian uutisia: Käyttäjä painaa navigointipalkissa olevaa kategoriaa ja pääsee kyseisen kategorian sivulle, missä on kaikki kategorian uutiset.
 
 
 Sovelluksen puutteet ja parannusehdotukset
