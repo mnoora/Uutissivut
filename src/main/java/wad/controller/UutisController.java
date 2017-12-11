@@ -40,7 +40,6 @@ import  org.springframework.security.web.authentication.logout.SecurityContextLo
 @Controller
 public class UutisController {
     
-    
     @Autowired
     private UutisRepository uutisetRepository;
     
