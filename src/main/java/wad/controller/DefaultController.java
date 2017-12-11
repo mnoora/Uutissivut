@@ -84,7 +84,7 @@ public class DefaultController {
         Uutinen uutinen2 = new Uutinen();
         uutinen2.setOtsikko("Presidenttiehdokkaat paneelikeskustelussa");
         uutinen2.setIngressi("Presidenttiehdokkaat kokoontuivat keskustelemaan ajankohtaisista aiheista");
-        uutinen2.setTeksti("Tänään presidentti ehdokkaat kokoontuivat samaan paikkaan keskustellakseen polttavista aiheista. Voit myös seurata keskustelua suorana.");
+        uutinen2.setTeksti("Tänään presidenttiehdokkaat kokoontuivat samaan paikkaan keskustellakseen polttavista aiheista. Voit myös seurata keskustelua suorana.");
         
         Uutinen uutinen3 = new Uutinen();
         uutinen3.setOtsikko("Rankkaa lumisadetta luvassa");
