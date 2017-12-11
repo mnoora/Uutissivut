@@ -9,12 +9,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import javax.validation.constraints.*;
-import javax.persistence.*;
 import java.util.ArrayList;
 
 /**
@@ -26,10 +23,9 @@ import java.util.ArrayList;
 @Data
 @Entity
 public class Kategoria extends AbstractPersistable<Long>{
-
+    
     @Column
     private String nimi;
-    
     private int uutistenMaara;
     
     @ManyToMany

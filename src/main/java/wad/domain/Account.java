@@ -10,11 +10,9 @@ package wad.domain;
  * @author mnoora
  */
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.validation.constraints.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
@@ -23,9 +21,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @NoArgsConstructor
 public class Account extends AbstractPersistable<Long> {
     
+    //Luokka käyttäjiä varten, käytetään kirjautumisessa 
     
     private String username;
-  
     private String password;
 
 

@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,10 +20,8 @@ import javax.persistence.Basic;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import java.util.*;
 import javax.persistence.Column;
-import javax.validation.constraints.*;
 import javax.persistence.*;
 
 @AllArgsConstructor

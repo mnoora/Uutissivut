@@ -22,7 +22,7 @@ import wad.repository.UutisRepository;
 import wad.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import wad.config.SecurityConfiguration;
+
 
 /**
  *
@@ -30,17 +30,14 @@ import wad.config.SecurityConfiguration;
  */
 @Controller
 public class DefaultController {
-    
-   // @Autowired
-    //private BCryptPasswordEncoder passwordEncoder;
+   
     
     @Autowired
     private UutisRepository uutisetRepository;
     
     @Autowired 
     private KategoriaRepository kategoriaRepository;
-    
-  
+   
     @Autowired
     private KirjoittajaRepository kirjoittajaRepository;
     
@@ -81,6 +78,7 @@ public class DefaultController {
         ArrayList<Uutinen> lista = new ArrayList<>();
         ArrayList<Uutinen> lista2 = new ArrayList<>();
         
+        
         uutinen.setKirjoittajat(kirjoittajat);
         
         Uutinen uutinen2 = new Uutinen();
@@ -96,17 +94,44 @@ public class DefaultController {
         uutinen2.setKirjoittajat(kirjoittajat);
         uutinen3.setKirjoittajat(kirjoittajat);
         
+        Uutinen uutinen4 = new Uutinen();
+        uutinen4.setOtsikko("Lemmikin omistamisen on todettu olevan terveellistä");
+        uutinen4.setIngressi("Lemmikin omistajat elävät muita pidempään");
+        uutinen4.setTeksti("Lemmikin omistajien on todettu elävän pidempään kuin niiden ihmisten, jotka eivät omista lemmikkejä."
+                + " Lemmikkieläinten terveysvaikutukset ovat nousseet tietoisuuteen yhä enemmän. Vaikutukset ovat suuria etenkin koiranomistajien keskuudessa.");
+        uutinen4.setKirjoittajat(kirjoittajat);
         
+        Uutinen uutinen5 = new Uutinen();
+        uutinen5.setOtsikko("Lähestyvän joulun seuraukset");
+        uutinen5.setIngressi("Ruuhkan mahdollisuus kasvaa huomattavasti");
+        uutinen5.setTeksti("Lähestyvä joulu aiheuttaa laajasti ruuhkaa. Ruuhkan määrän on arvioitu kasvavan mitä lähemmäs joulua ollaan. "
+                + "Suurin syy jouluruuhkaan ovat jouluostokset, joita ostetaan sitä enemmän mitä lähempänä joulu on.");
+        uutinen5.setKirjoittajat(kirjoittajat);
+        
+        Uutinen uutinen6 = new Uutinen();
+        uutinen6.setOtsikko("Laaja flunssaepidemia");
+        uutinen6.setIngressi("Pääkaupunkiseudulla laaja flunssaepidemia");
+        uutinen6.setTeksti("Pääkaupunkiseudulla on havaittu laaja flunssaepidemia. Ihmisiä kehotetaan kiinnittämään enemmän huomiota käsien pesuun."
+                + " Mistään hyvin vakavasta ei kuitenkaan ole kyse, samankaltaiset epidemiat ovat hyvin yleisiä talviaikaan.");
+        uutinen5.setKirjoittajat(kirjoittajat);
         
         Kategoria kategoria1 = new Kategoria("Politiikka",lista);
         Kategoria kategoria2 = new Kategoria("Kotimaa",lista);
+        Kategoria kategoria3 = new Kategoria("Terveys",lista);
+        
         lista2.add(uutinen);
         lista2.add(uutinen2);
         lista2.add(uutinen3);
+        lista2.add(uutinen4);
+        lista2.add(uutinen5);
+        lista2.add(uutinen6);
         
         uutinen.getKategoriat().add(kategoria2);
         uutinen2.getKategoriat().add(kategoria1);
         uutinen3.getKategoriat().add(kategoria2);
+        uutinen4.getKategoriat().add(kategoria3);
+        uutinen5.getKategoriat().add(kategoria2);
+        uutinen6.getKategoriat().add(kategoria2);
         
         this.uutisetRepository.saveAll(lista2);
         this.kirjoittajaRepository.save(kirjoittaja);
@@ -114,9 +139,14 @@ public class DefaultController {
         kategoria1.lisaaUutinen(uutinen2);
         kategoria2.lisaaUutinen(uutinen);
         kategoria2.lisaaUutinen(uutinen3);
+        kategoria3.lisaaUutinen(uutinen4);
+        kategoria2.lisaaUutinen(uutinen5);
+        kategoria2.lisaaUutinen(uutinen6);
         
         this.kategoriaRepository.save(kategoria1);
         this.kategoriaRepository.save(kategoria2);
+        this.kategoriaRepository.save(kategoria3);
+        
         
         //tallennetaan uutiset ja kategoriat repository:hin
           
