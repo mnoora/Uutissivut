@@ -65,7 +65,7 @@ public class defaultController {
         Uutinen uutinen = new Uutinen();
         uutinen.setOtsikko("Uusi uutissivu");
         uutinen.setIngressi("Tervetuloa uudelle uutissivulle!");
-        uutinen.setTeksti("");
+        uutinen.setTeksti("Uuden uutissivuston ansiosta tulet pysymään ajan tasalla maailman tapahtumista.");
         ArrayList<Uutinen> lista = new ArrayList<>();
         ArrayList<Uutinen> lista2 = new ArrayList<>();
         
@@ -77,9 +77,9 @@ public class defaultController {
         uutinen2.setTeksti("Tänään presidentti ehdokkaat kokoontuivat samaan paikkaan keskustellakseen polttavista aiheista. Voit myös seurata keskustelua suorana.");
         
         Uutinen uutinen3 = new Uutinen();
-        uutinen3.setOtsikko("Uuutinen");
-        uutinen3.setIngressi("kolmas ingressi");
-        uutinen3.setTeksti("ok");
+        uutinen3.setOtsikko("Rankkaa lumisadetta luvassa");
+        uutinen3.setIngressi("Lunta jopa 10 cm.");
+        uutinen3.setTeksti("Ensi viikolla rankat lumisateet saavuttavat Suomen ja pääkaupunkiseuta saa jopa hyvinkin paksun lumipeitteen. Lumisateen on ennustettu leviävän koko Suomeen.");
         
         uutinen2.setKirjoittajat(kirjoittajat);
         uutinen3.setKirjoittajat(kirjoittajat);
