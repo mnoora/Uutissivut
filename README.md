@@ -1,6 +1,6 @@
 # Uutissivusto
 
 Sivusto uutisille. <br/>
-Oletuskäyttäjä, joka pääsee Hallintapaneeliin:
-Käyttäjätunnus: esimerkki
-Salasana: salasana
+Oletuskäyttäjä, joka pääsee Hallintapaneeliin: <br/>
+Käyttäjätunnus: esimerkki <br/>
+Salasana: salasana <br/>
