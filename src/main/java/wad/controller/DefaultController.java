@@ -21,6 +21,8 @@ import javax.transaction.Transactional;
 import wad.repository.UutisRepository;
 import wad.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import wad.config.SecurityConfiguration;
 
 /**
  *
@@ -29,8 +31,8 @@ import org.springframework.context.annotation.Bean;
 @Controller
 public class DefaultController {
     
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+   // @Autowired
+    //private BCryptPasswordEncoder passwordEncoder;
     
     @Autowired
     private UutisRepository uutisetRepository;
@@ -48,6 +50,11 @@ public class DefaultController {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
     
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    
     @PostConstruct
     @Transactional
     public void init() {
@@ -55,7 +62,7 @@ public class DefaultController {
         //luodaan oletuskäyttäjä
         Account user = new Account();
         user.setUsername("esimerkki");
-        user.setPassword(passwordEncoder.encode("salasana"));
+        user.setPassword(this.passwordEncoder().encode("salasana"));
         user = this.accountRepository.save(user);
         
         //luodaan esimerkkiuutisia uutissivustoa varten
@@ -114,4 +121,5 @@ public class DefaultController {
         //tallennetaan uutiset ja kategoriat repository:hin
           
     }
+    
 }
