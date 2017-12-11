@@ -13,10 +13,13 @@ package wad;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class UutissivutApplication {
     
     public static void main(String[] args) {
+        
+        
         SpringApplication.run(UutissivutApplication.class, args);
     }
 }

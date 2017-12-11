@@ -153,7 +153,7 @@ public class UutisController {
         Pageable pageable3 = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"uutistenMaara");
         model.addAttribute("uutiset",this.uutisetRepository.findAll(pageable));
         model.addAttribute("kategoriat",this.kategoriaRepository.findAll());
-         model.addAttribute("sivuuutiset",this.uutisetRepository.findAll(pageable2));
+        model.addAttribute("sivuuutiset",this.uutisetRepository.findAll(pageable2));
         model.addAttribute("maarauutiset",this.kategoriaRepository.findAll(pageable3));
         return "kategoriajarjestys";
         
