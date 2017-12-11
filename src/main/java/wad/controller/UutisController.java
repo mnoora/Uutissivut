@@ -6,11 +6,9 @@
 package wad.controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.transaction.Transactional;
 import java.util.Optional;
-import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -192,18 +190,19 @@ public class UutisController {
     
     @GetMapping("/jarjestys/edellinenviikko")
     public String listaaEdellisenViikonUutiset(Model model){
-        Pageable pageable2 = PageRequest.of(0, Integer.MAX_VALUE,Sort.Direction.DESC,"time");
+        
         Pageable pageable3 = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"uutistenMaara");
-        ArrayList lista = new ArrayList<>();
-        LocalDateTime a = LocalDateTime.now().minusWeeks(1);
+        
+        ArrayList edellisenViikonUutisLista = new ArrayList<>();
+        LocalDateTime aikaViikkoSitten = LocalDateTime.now().minusWeeks(1);
         for(Uutinen uutinen : this.uutisetRepository.findAll()){
-            if(uutinen.getTime().isAfter(a)){
-                lista.add(uutinen);
+            if(uutinen.getTime().isAfter(aikaViikkoSitten)){
+                edellisenViikonUutisLista.add(uutinen);
             }
         }
         Pageable pageable = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"time");
-        model.addAttribute("uutiset",lista);
-        model.addAttribute("sivuuutiset",this.uutisetRepository.findAll(pageable2));
+        model.addAttribute("uutiset",edellisenViikonUutisLista);
+        model.addAttribute("sivuuutiset",this.uutisetRepository.findAll(pageable));
         model.addAttribute("maarauutiset",this.kategoriaRepository.findAll(pageable3));
         return "edellisenviikonuutiset";
     }
