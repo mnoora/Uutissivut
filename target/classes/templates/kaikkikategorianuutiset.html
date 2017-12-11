@@ -4,8 +4,15 @@
         <meta charset="UTF-8" />
         <title>Uutiset</title>
         <style>
+            * {
+                box-sizing: border-box;
+            }
+
+
+
             body {
-                background-color: #93B874;
+                background-color: #BDD8D2;
+                margin: 0;
             }
             .header {
                 background-color: #f1f1f1;
@@ -34,6 +41,13 @@
                 background-color: #ddd;
                 color: black;
             }
+            nav > ul >li {
+                display:inline-block;
+                width:50%; /* this will put 2 in one row*/
+}
+            li li{
+                display: inline;
+            }
             .column {
                 float: left;
                 padding: 10px;
@@ -41,25 +55,26 @@
 
 /* Left and right column */
             .column.side {
-                width: 30%;
+                width: 25%;
             }
 
 /* Middle column */
             .column.middle {
-                width: 70%;
+                width: 75%;
             }
-    </style>
+        </style>
     </head>
+    
     <body>
-        
         <div class="header">
             <h1>Uutiset</h1>
         </div>
+
         <div class="topnav">
             <a th:href="@{/}">
             <span th:text="Etusivu">Etusivu</span> 
             </a>
-            <a th:href="@{/hallintapaneeli}">
+             <a th:href="@{/hallintapaneeli}">
             <span th:text="Hallintapaneeli">Hallintapaneeli</span> 
             </a>
             <u th:each="kategoria : ${kategoriat}">
@@ -69,21 +84,22 @@
              </u>
             </div>
         
+        
+    
         <div class="column middle">
             <ul>
-                <h1> Uutiset järjestettynä kategorian perusteella</h1>
+                <h1> Kaikki kategorian uutiset </h1>
                 <li th:each="uutinen : ${uutiset}">
-                <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
-                    <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> <br/>
-                </a>
-                    <span th:text="${uutinen.ingressi}">uutisen ingressi</span> <br/>
-            </li>
-        </ul>
+                    <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
+                        <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> <br/>
+                    </a>
+                    <span th:text="${uutinen.ingressi}">uutisen ingressi</span><br/> 
+                        <img th:src="@{/uutinen/{id}/content(id=${uutinen.id})}"/>
+               
+                </li>
+            </ul>
         </div>
-      
-
-      
-     <div class="column side">
+        <div class="column side">
             <ul
                 <h1><strong>Kaikki uutiset aikajärjestyksessä</strong></h1>
                 <br/>
@@ -112,7 +128,5 @@
         </div>
       
         
-        
-      
     </body>
 </html>

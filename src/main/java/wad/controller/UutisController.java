@@ -15,30 +15,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 import wad.domain.*;
 import wad.service.*;
 import wad.repository.*;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.stereotype.*;
-import org.springframework.stereotype.Service;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.ArrayList;
-import org.springframework.security.crypto.password.*;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.servlet.http.*;
 import  org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -49,6 +40,7 @@ import  org.springframework.security.web.authentication.logout.SecurityContextLo
  */
 @Controller
 public class UutisController {
+    
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     
@@ -68,70 +60,7 @@ public class UutisController {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
     
-    @PostConstruct
-    public void init() {
-        
-        Account user = new Account();
-        user.setUsername("hannu");
-        user.setPassword(passwordEncoder.encode("lol"));
-        user = this.accountRepository.save(user);
-        
-        Kirjoittaja kirjoittaja = new Kirjoittaja();
-        kirjoittaja.setNimi("Noora");
-        
-        ArrayList<Kirjoittaja> kirjoittajat = new ArrayList<>();
-        kirjoittajat.add(kirjoittaja);
-        
-        
-        
-        Uutinen uutinen = new Uutinen();
-        uutinen.setOtsikko("Ensimmäinen uutinen");
-        uutinen.setIngressi("eka ingressi");
-        uutinen.setTeksti("wääääy");
-        ArrayList<Uutinen> lista = new ArrayList<>();
-        ArrayList<Uutinen> lista2 = new ArrayList<>();
-        
-        uutinen.setKirjoittajat(kirjoittajat);
-        
-        Uutinen uutinen2 = new Uutinen();
-        uutinen2.setOtsikko("Toinen uutinen");
-        uutinen2.setIngressi("toka ingressi");
-        uutinen2.setTeksti("wow");
-        
-        Uutinen uutinen3 = new Uutinen();
-        uutinen3.setOtsikko("Uuutinen");
-        uutinen3.setIngressi("kolmas ingressi");
-        uutinen3.setTeksti("ok");
-        
-        uutinen2.setKirjoittajat(kirjoittajat);
-        uutinen3.setKirjoittajat(kirjoittajat);
-        
-        
-        
-        Kategoria kategoria1 = new Kategoria("Politiikka",lista);
-        Kategoria kategoria2 = new Kategoria("Urheilu",lista);
-        lista2.add(uutinen);
-        lista2.add(uutinen2);
-        lista2.add(uutinen3);
-        
-        uutinen.getKategoriat().add(kategoria2);
-        uutinen2.getKategoriat().add(kategoria1);
-        uutinen3.getKategoriat().add(kategoria2);
-        
-        this.uutisetRepository.saveAll(lista2);
-        this.kirjoittajaRepository.save(kirjoittaja);
-        
-        kategoria1.lisaaUutinen(uutinen2);
-        kategoria2.lisaaUutinen(uutinen);
-        kategoria2.lisaaUutinen(uutinen3);
-        
-        this.kategoriaRepository.save(kategoria1);
-        this.kategoriaRepository.save(kategoria2);
-        
-        
-        
-        
-    }
+    
     
     @GetMapping("/")
     public String list(Model model) {
@@ -163,8 +92,9 @@ public class UutisController {
         Pageable pageable2 = PageRequest.of(0, Integer.MAX_VALUE,Sort.Direction.DESC,"time");
         Pageable pageable3 = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"uutistenMaara");
         model.addAttribute("uutiset", this.kategoriaRepository.findByNimi(kategoria).getUutiset());
-         model.addAttribute("sivuuutiset",this.uutisetRepository.findAll(pageable2));
+        model.addAttribute("sivuuutiset",this.uutisetRepository.findAll(pageable2));
         model.addAttribute("maarauutiset",this.kategoriaRepository.findAll(pageable3));
+        model.addAttribute("kategoriat",this.kategoriaRepository.findAll());
         return "kaikkikategorianuutiset";
     }
     
@@ -280,7 +210,6 @@ public class UutisController {
     
     @PostMapping("/login")
     public String loginInformation(@RequestParam String username, @RequestParam String password){
-        
         if(this.customUserDetailsService.loadUserByUsername(username).getPassword().equals(password)){
             UserDetails userDetails = this.customUserDetailsService.loadUserByUsername(username);
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();

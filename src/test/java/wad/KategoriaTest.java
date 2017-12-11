@@ -42,6 +42,8 @@ public class KategoriaTest {
         uutinen.setOtsikko("esimerkki");
         lista.add(uutinen);
         kategoria.setUutiset(lista);
+        kategoria.setUutistenMaara(1);
+        
     }
     
     @After
@@ -57,6 +59,11 @@ public class KategoriaTest {
     public void setUutisetToimiiOikeinYhdelläUutisella() {
         
         assertEquals("esimerkki",kategoria.getUutiset().get(0).getOtsikko());
+    }
+    
+    @Test
+    public void getUutistenMaaraPalauttaaOikeanMaaran(){
+        assertEquals(1,kategoria.getUutistenMaara());
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

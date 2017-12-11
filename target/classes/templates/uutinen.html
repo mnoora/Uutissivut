@@ -41,18 +41,18 @@
 
 /* Left and right column */
             .column.side {
-                width: 30%;
+                width: 40%;
             }
 
 /* Middle column */
             .column.middle {
-                width: 70%;
+                width: 60%;
             }
     </style>
     </head>
     <body>
         
-        <div class="header">
+         <div class="header">
             <h1>Uutiset</h1>
         </div>
         <div class="topnav">
@@ -69,21 +69,7 @@
              </u>
             </div>
         
-        <div class="column middle">
-            <ul>
-                <h1> Uutiset järjestettynä kategorian perusteella</h1>
-                <li th:each="uutinen : ${uutiset}">
-                <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
-                    <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> <br/>
-                </a>
-                    <span th:text="${uutinen.ingressi}">uutisen ingressi</span> <br/>
-            </li>
-        </ul>
-        </div>
-      
-
-      
-     <div class="column side">
+        <div class="column side">
             <ul
                 <h1><strong>Kaikki uutiset aikajärjestyksessä</strong></h1>
                 <br/>
@@ -111,8 +97,17 @@
             </ul>
         </div>
       
+
+      
+     
         
+        <h1 th:text="${uutinen.time +'     '+ uutinen.otsikko}">Uutisen otsikko</h1>
         
+        <h2 th:text="${uutinen.ingressi}">Uutisen ingressi</h2>
+        <img th:src="@{/uutinen/{id}/content(id=${uutinen.id})}"/><br/>
+        
+        <span th:text="${uutinen.teksti}">Uutisen sisältö</span>
       
     </body>
 </html>
+

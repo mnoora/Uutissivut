@@ -1,11 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+   
+
     <head>
         <meta charset="UTF-8" />
         <title>Uutiset</title>
         <style>
             body {
                 background-color: #93B874;
+            }
+            .button:hover {
+                background-color: #4CAF50; /* Green */
+                color: white;
             }
             .header {
                 background-color: #f1f1f1;
@@ -34,26 +40,13 @@
                 background-color: #ddd;
                 color: black;
             }
-            .column {
-                float: left;
-                padding: 10px;
-            }   
-
-/* Left and right column */
-            .column.side {
-                width: 30%;
-            }
-
-/* Middle column */
-            .column.middle {
-                width: 70%;
-            }
-    </style>
+        </style>
     </head>
     <body>
         
+        
         <div class="header">
-            <h1>Uutiset</h1>
+            <h1>Hallintapaneeli</h1>
         </div>
         <div class="topnav">
             <a th:href="@{/}">
@@ -68,51 +61,45 @@
                 </a>
              </u>
             </div>
+       
         
-        <div class="column middle">
-            <ul>
-                <h1> Uutiset järjestettynä kategorian perusteella</h1>
-                <li th:each="uutinen : ${uutiset}">
+     
+        <a th:href="@{/logout}">
+            <span text="logout">Logout </span>
+        </a>
+        <ul>
+            <li th:each="uutinen : ${uutiset}">
                 <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
                     <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> <br/>
                 </a>
                     <span th:text="${uutinen.ingressi}">uutisen ingressi</span> <br/>
+                    <td><form th:action="@{/uutinen/{id}(id=${uutinen.id})}" th:method="delete"><input type="submit" value="Delete" class="button"/></form></td>
+                 
             </li>
         </ul>
-        </div>
-      
+        
+        
 
-      
-     <div class="column side">
-            <ul
-                <h1><strong>Kaikki uutiset aikajärjestyksessä</strong></h1>
-                <br/>
-                <br/>
-            <li th:each="uutinen : ${sivuuutiset}">
-                <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
-                    <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> <br/>
-                </a>
-                <span th:text="${uutinen.ingressi}">uutisen ingressi</span><br/> 
-            </li>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-            <ul
-                <h1><strong> Kategoriat uutisten määrän perusteella järjestettynä</strong></h1>
-                <br/>
-                <br/>
-                <li th:each="kategoria : ${maarauutiset}">
-                   <a th:href="@{/{kategoria}(kategoria=${kategoria.nimi})}">
-                        <span th:text="${kategoria.nimi}">uutisen otsikko</span> <br/>
-                     </a>
-                 
-                </li>
-            </ul>
-        </div>
-      
+        <form th:action="@{/hallintapaneeli}" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <legend><strong>Lisää uutinen</strong></legend>
+            <p>Otsikko: <br/>
+                <input name="otsikko"></input></p>
+            <p>Ingressi:<br/>
+                <input name="ingressi"></input></p>
+            <p>Teksti:<br/> 
+                <input name="teksti"></input></p>
+            <p>Kategoria:<br/> 
+                <input name="kategoria"></input></p>
+            <p>Kirjoittaja:<br/> 
+                <input name="nimi"></input></p>
+                <p>Kuva: <br/>
+                    <input type="file" name="file" id="file"</input></p>
+            <input type="submit" value="Add" class="button"></input>
+            </fieldset>
+        </form>
+        <img src ="/media/image.jpeg" />
         
-        
-      
+    
     </body>
 </html>

@@ -41,6 +41,7 @@
 
 /* Left and right column */
             .column.side {
+                float: right;
                 width: 30%;
             }
 
@@ -69,10 +70,11 @@
              </u>
             </div>
         
+        
         <div class="column middle">
+            <h1> Edellisen viikon uutiset </h1>
             <ul>
-                <h1> Uutiset järjestettynä kategorian perusteella</h1>
-                <li th:each="uutinen : ${uutiset}">
+            <li th:each="uutinen : ${uutiset}">
                 <a th:href="@{/uutinen/{id}(id=${uutinen.id})}">
                     <span th:text="${uutinen.time + ' ' +uutinen.otsikko}">uutisen otsikko</span> <br/>
                 </a>
@@ -80,10 +82,8 @@
             </li>
         </ul>
         </div>
-      
 
-      
-     <div class="column side">
+      <div class="column side">
             <ul
                 <h1><strong>Kaikki uutiset aikajärjestyksessä</strong></h1>
                 <br/>
@@ -98,7 +98,8 @@
                 <br/>
                 <br/>
                 <br/>
-            <ul
+            </ul>
+          <ul
                 <h1><strong> Kategoriat uutisten määrän perusteella järjestettynä</strong></h1>
                 <br/>
                 <br/>
@@ -111,6 +112,7 @@
             </ul>
         </div>
       
+     
         
         
       
