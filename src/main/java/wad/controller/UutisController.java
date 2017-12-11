@@ -108,8 +108,8 @@ public class UutisController {
         
         
         
-        Kategoria kategoria1 = new Kategoria("kategoria1",lista);
-        Kategoria kategoria2 = new Kategoria("kategoria2",lista);
+        Kategoria kategoria1 = new Kategoria("Politiikka",lista);
+        Kategoria kategoria2 = new Kategoria("Urheilu",lista);
         lista2.add(uutinen);
         lista2.add(uutinen2);
         lista2.add(uutinen3);
