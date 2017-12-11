@@ -99,7 +99,7 @@ public class UutisController {
         uutinen2.setTeksti("wow");
         
         Uutinen uutinen3 = new Uutinen();
-        uutinen3.setOtsikko("Kolmas uutinen");
+        uutinen3.setOtsikko("Uuutinen");
         uutinen3.setIngressi("kolmas ingressi");
         uutinen3.setTeksti("ok");
         
