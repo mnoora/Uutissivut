@@ -30,6 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
      
+    //Hallintapaneeli-sivu vaatii kirjautumisen, muut sivut eivät
     @Override
     protected void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()

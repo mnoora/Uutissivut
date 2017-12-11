@@ -17,9 +17,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class UutissivutApplication {
     
+    //käynnistetään sovellus
     public static void main(String[] args) {
-        
-        
         SpringApplication.run(UutissivutApplication.class, args);
     }
 }

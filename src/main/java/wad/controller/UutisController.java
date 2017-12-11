@@ -40,8 +40,6 @@ import  org.springframework.security.web.authentication.logout.SecurityContextLo
 @Controller
 public class UutisController {
     
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
     
     @Autowired
     private UutisRepository uutisetRepository;
@@ -73,6 +71,7 @@ public class UutisController {
         model.addAttribute("maarauutiset",this.kategoriaRepository.findAll(pageable3));
         return "uutiset";
     } 
+    
     @GetMapping("/jarjestys/kategoria")
     public String jarjestysKategorianMukaan(Model model){
         Pageable pageable = PageRequest.of(0,Integer.MAX_VALUE,Sort.Direction.DESC,"kategoriat");

@@ -52,11 +52,13 @@ public class DefaultController {
     @Transactional
     public void init() {
         
+        //luodaan oletuskäyttäjä
         Account user = new Account();
         user.setUsername("esimerkki");
         user.setPassword(passwordEncoder.encode("salasana"));
         user = this.accountRepository.save(user);
         
+        //luodaan esimerkkiuutisia uutissivustoa varten
         Kirjoittaja kirjoittaja = new Kirjoittaja();
         kirjoittaja.setNimi("Noora");
         
@@ -109,6 +111,7 @@ public class DefaultController {
         this.kategoriaRepository.save(kategoria1);
         this.kategoriaRepository.save(kategoria2);
         
+        //tallennetaan uutiset ja kategoriat repository:hin
           
     }
 }
