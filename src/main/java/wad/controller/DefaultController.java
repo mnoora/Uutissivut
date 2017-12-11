@@ -31,7 +31,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Controller
 public class DefaultController {
    
-    
     @Autowired
     private UutisRepository uutisetRepository;
     
